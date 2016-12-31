@@ -1,0 +1,6 @@
+target/
+src/main/resources/config.properties
+.classpath
+.project
+.settings
+dependency-reduced-pom.xml
