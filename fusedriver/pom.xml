@@ -22,7 +22,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>edu.gmu.swe622.ExampleFS</mainClass>
+							<mainClass>edu.gmu.swe622.CloudFS</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
@@ -66,6 +66,11 @@
 			<id>bintray</id>
 			<name>bintray</name>
 			<url>http://jcenter.bintray.com</url>
+		</repository>
+		<repository>
+			<id>jb.internal</id>
+			<name>jb-internal</name>
+			<url>https://maven.jonbell.net/repository/internal/</url>
 		</repository>
 	</repositories>
 </project>
