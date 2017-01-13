@@ -18,6 +18,7 @@ import net.fusejna.types.TypeMode.ModeWrapper;
 import net.fusejna.types.TypeMode.NodeType;
 import net.fusejna.util.FuseFilesystemAdapterAssumeImplemented;
 import edu.gmu.swe622.cloud.CloudProvider;
+import edu.gmu.swe622.cloud.HelloWorldProvider;
 import edu.gmu.swe622.cloud.MemCacheProvider;
 import edu.gmu.swe622.struct.CloudDirectory;
 import edu.gmu.swe622.struct.CloudFile;
@@ -59,11 +60,17 @@ public class CloudFS extends FuseFilesystemAdapterAssumeImplemented {
 	}
 
 	public static void main(String[] args) throws FuseException {
-		if (args.length != 1) {
-			System.err.println("Usage: CloudFS <mountpoint>");
+		if (args.length != 1 && args.length != 2) {
+			System.err.println("Usage: CloudFS <mountpoint> {hello}");
 			System.exit(1);
 		}
-		CloudFS fs = new CloudFS(new MemCacheProvider(new DropBoxProvider()));
+		CloudProvider root = null;
+		if(args.length == 2 && "hello".equals(args[1]))
+			root = new HelloWorldProvider(null);
+		else
+			root = new DropBoxProvider();
+		
+		CloudFS fs = new CloudFS(new MemCacheProvider(root));
 
 		fs.mount(args[0]);
 	}
