@@ -166,8 +166,8 @@ public class CloudFS extends FuseFilesystemAdapterAssumeImplemented {
 		}
 		CloudFile f = fileHandlePool.getInst();
 		try {
-			provider.get(path, f, false);
 			provider.openFile(path, f, info.openMode());
+			provider.get(path, f, false);
 			info.fh(f.getPoolIdx());
 			return 0;
 		} catch (FileNotFoundException ex) {
